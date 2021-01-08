@@ -1,16 +1,21 @@
 import Link from 'next/link';
 import Head from 'next/head';
+import Router from 'next/router';
 
-export default ({ children, title,description }) => {
+export default ({ children, title, description, backButton }) => {
   return (
     <div>
       <Head>
-
         <title>{title}</title>
-        <meta name='description' content={ description}/>
+        <meta name='description' content={description} />
       </Head>
       <div className='container'>
         <nav>
+          {backButton && (
+            <span onClick={() => Router.back()} className='back-button'>
+              &#x2b05;
+            </span>
+          )}{' '}
           <Link href='/'>
             <a>
               <span className='main-title'>Hacker Next</span>
@@ -38,6 +43,11 @@ export default ({ children, title,description }) => {
             }
             nav .main-title {
               font-weight: bold;
+            }
+            nav .back-button {
+              padding-right: 1em;
+              font-size: 0.9rem;
+              cursor: pointer;
             }
           `}
         </style>
